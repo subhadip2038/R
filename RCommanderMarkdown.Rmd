@@ -1,0 +1,105 @@
+---
+title: "Replace with Main Title"
+author: "Your Name"
+date: "AUTOMATIC"
+---
+
+
+```{r echo=FALSE, message=FALSE}
+# include this code chunk as-is to set options
+knitr::opts_chunk$set(comment=NA, prompt=TRUE)
+library(Rcmdr)
+library(car)
+library(RcmdrMisc)
+```
+
+
+```{r echo=FALSE}
+# include this code chunk as-is to enable 3D graphs
+library(rgl)
+knitr::knit_hooks$set(webgl = hook_webgl)
+```
+
+```{r}
+require("ggplot2")
+.df <- na.omit(data.frame(x = Case1_Effective_HK_2.5$Effective_HK_Time_2.5_hrs_Mobilization))
+.nbins <- pretty(range(.df$x), n = nclass.scott(.df$x), min.n = 1)
+.plot <- ggplot(data = .df, aes(x = x, y = ..density..)) + 
+  geom_histogram(aes(fill = ..density..), breaks = .nbins) + 
+  scale_y_continuous(expand = c(0.01, 0)) + 
+  xlab("Effective_HK_Time_2.5_hrs_Mobilization") + 
+  ylab("Density") + 
+  theme_bw(base_size = 14, base_family = "sans") + 
+  theme(legend.position = "none")
+print(.plot)
+rm(.df, .nbins, .plot)
+```
+
+```{r}
+require("ggplot2")
+.df <- na.omit(data.frame(x = Case1_Effective_HK_2.5$Effective_HK_Time_2.5_hrs_Mobilization))
+.nbins <- pretty(range(.df$x), n = nclass.scott(.df$x), min.n = 1)
+.plot <- ggplot(data = .df, aes(x = x, y = ..density..)) + 
+  geom_histogram(aes(fill = ..density..), breaks = .nbins) + 
+  stat_density(geom = "path", size = 1, alpha = 0.5) + 
+  scale_y_continuous(expand = c(0.01, 0)) + 
+  xlab("Effective_HK_Time_2.5_hrs_Mobilization") + 
+  ylab("Density") + 
+  theme_bw(base_size = 14, base_family = "sans") + 
+  theme(legend.position = "none")
+print(.plot)
+rm(.df, .nbins, .plot)
+```
+
+```{r}
+require("ggplot2")
+.df <- data.frame(y = Case1_Effective_HK_2.5$Effective_HK_Time_2.5_hrs_Mobilization)
+# unbiased estimator
+.est <- c(mean(.df$y), sd(.df$y))
+.plot <- ggplot(data = .df, aes(sample = y)) + 
+  stat_qq(distribution = qnorm, dparams = list(mean = .est[1], sd = .est[2])) + 
+  scale_y_continuous(expand = c(0.01, 0)) + 
+  xlab("Theoretical quantile") + 
+  ylab("Sample quantile") + 
+  labs(title = "Theoretical: qnorm(mean = 8.3, sd = 3)") + 
+  theme_bw(base_size = 14, base_family = "sans")
+print(.plot)
+rm(.df, .est, .plot)
+```
+
+```{r}
+require("ggplot2")
+.df <- na.omit(data.frame(x = Case1_Effective_HK_2.5$Effective_HK_Time_2.5_hrs_Mobilization))
+.nbins <- pretty(range(.df$x), n = nclass.scott(.df$x), min.n = 1)
+.plot <- ggplot(data = .df, aes(x = x, y = ..density..)) + 
+  geom_histogram(aes(fill = ..density..), breaks = .nbins) + 
+  stat_density(geom = "path", size = 1, alpha = 0.5) + 
+  scale_y_continuous(expand = c(0.01, 0)) + 
+  xlab("Effective_HK_Time_2.5_hrs_Mobilization") + 
+  ylab("Density") + 
+  theme_bw(base_size = 14, base_family = "sans") + 
+  theme(legend.position = "none")
+print(.plot)
+rm(.df, .nbins, .plot)
+```
+
+```{r}
+indexplot(Case1_Effective_HK_2.5[,'Effective_HK_Time_2.5_hrs_Mobilization', drop=FALSE], type='h', id.method='y', id.n=2)
+```
+
+```{r}
+with(Case1_Effective_HK_2.5, Hist(Effective_HK_Time_2.5_hrs_Mobilization, scale="frequency", breaks="Sturges", col="darkgray"))
+```
+
+```{r}
+indexplot(Case1_Effective_HK_2.5[,'Effective_HK_Time_2.5_hrs_Mobilization', drop=FALSE], type='h', id.method='y', id.n=2)
+```
+
+
+```{r}
+
+```{r}
+DAMAGEMECH <- readXL("E:/Subhadip Laptop back up/API 571/Damage Mechanisms_API 571.xlsx", rownames=FALSE, header=TRUE, na="", 
+  sheet="Metallugical Change", stringsAsFactors=TRUE)
+```
+
